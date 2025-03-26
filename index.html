@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-posta İmzası</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        .signature { border: 1px solid #ddd; padding: 20px; display: inline-block; text-align: left; }
+        .social-icons img { width: 24px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h2>E-Posta İmza Oluşturucu</h2>
+    <form id="signatureForm">
+        <label for="email">E-posta Adresiniz:</label>
+        <input type="email" id="email" required> <br><br>
+
+        <label for="mobile">Mobil Numaranız (Varsa):</label>
+        <input type="text" id="mobile"> <br><br>
+
+        <button type="button" onclick="generateSignature()">İmzayı Oluştur</button>
+    </form>
+
+    <h3>Oluşturulan İmza:</h3>
+    <div id="signatureOutput" class="signature"></div>
+
+    <script>
+        function generateSignature() {
+            const email = document.getElementById("email").value;
+            const mobile = document.getElementById("mobile").value || "Belirtilmedi";
+            
+            const address = "Örnek Mah. Örnek Sok. No: 10, İstanbul";
+            const phone = "+90 212 123 45 67";
+
+            document.getElementById("signatureOutput").innerHTML = `
+                <strong>Adınız Soyadınız</strong><br>
+                <em>Pozisyonunuz</em><br>
+                <p>${address}</p>
+                <p>Telefon: ${phone}</p>
+                <p>Mobil: ${mobile}</p>
+                <p>E-posta: ${email}</p>
+                <div class="social-icons">
+                    <a href="https://twitter.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/twitter.png"/></a>
+                    <a href="https://linkedin.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/></a>
+                    <a href="https://facebook.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/000000/facebook.png"/></a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
