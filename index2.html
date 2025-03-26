@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Posta İmzası</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        .signature { border: 1px solid #ddd; padding: 20px; display: inline-block; text-align: left; font-size: 12px; }
+        .social-icons img { width: 24px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h2>E-Posta İmza Oluşturucu</h2>
+    <form id="signatureForm">
+        <label for="email">E-Posta Adresiniz:</label>
+        <input type="email" id="email" required> <br><br>
+
+        <label for="mobile">Mobil Numaranız (Varsa):</label>
+        <input type="text" id="mobile"> <br><br>
+
+        <button type="button" onclick="generateSignature()">İmzayı Oluştur</button>
+    </form>
+
+    <h3>Oluşturulan İmza:</h3>
+    <div id="signatureOutput" class="signature"></div>
+
+    <script>
+        function generateSignature() {
+            const email = document.getElementById("email").value;
+            const mobile = document.getElementById("mobile").value || "Belirtilmedi";
+            
+            const address = `
+                İkitelli OSB Mahallesi Aykosan 2. Kısım 5C Blok Sokak<br>
+                Aykosan Sitesi 5C Blok No: 1 İç Kapı No: 1<br>
+                Başakşehir/İstanbul/Türkiye 34490
+            `;
+            const phone = "+90 212 671 28 00 – DHL";
+            const fax = "+90 212 671 99 27";
+            const website = "www.kivancgroup.com";
+
+            // Kullanıcının e-posta adresinden isim kısmını al ve noktasız hale getir
+            let emailName = email.split("@")[0].replace(/\./g, "");
+
+            document.getElementById("signatureOutput").innerHTML = `
+                <strong>${emailName}</strong><br>
+                <p>${address}</p>
+                <p>Tel: ${phone}</p>
+                <p>Faks: ${fax}</p>
+                <p>Mobil: ${mobile}</p>
+                <p>E-posta: ${email}</p>
+                <p>Web: <a href="https://${website}" target="_blank">${website}</a></p>
+                <div class="social-icons">
+                    <a href="https://twitter.com/kivancgroup" target="_blank">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/twitter.png"/>
+                    </a>
+                    <a href="https://linkedin.com/company/kivancgroup/" target="_blank">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/>
+                    </a>
+                    <a href="https://facebook.com/KIVANCGROUP/" target="_blank">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/facebook.png"/>
+                    </a>
+                    <a href="https://instagram.com/kivancgroup/" target="_blank">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png"/>
+                    </a>
+                    <a href="https://youtube.com/@kivanc-group target="_blank">
+                        <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png"/>
+                    </a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
